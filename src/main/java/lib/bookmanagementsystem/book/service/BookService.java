@@ -3,6 +3,7 @@ package lib.bookmanagementsystem.book.service;
 import lib.bookmanagementsystem.book.entity.Book;
 import lib.bookmanagementsystem.book.repo.BookRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -57,6 +58,11 @@ public class BookService {
        Book book = bookRepo.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
         bookRepo.delete(book);
 
+    }
+
+    public List<Book> addAllBooksAtOnce(List<Book> book)
+    {
+        return bookRepo.saveAll(book);
     }
 
 

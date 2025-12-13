@@ -21,6 +21,7 @@ public class BookController {
     @PutMapping("/updateBook/{id}")
     public ResponseEntity<Book> updateBook(
             @PathVariable Integer id,
+
             @RequestBody Book updatedBook
     ){
         Book book = bookService.updateBook(id, updatedBook);
@@ -34,6 +35,12 @@ public class BookController {
         Book savedBook = bookService.addBook(book);
         return ResponseEntity.ok(savedBook);
 
+    }
+
+    @PostMapping("/addMultipleBooks")
+    public ResponseEntity<List<Book>> savedAllBooks(@RequestBody List<Book> books){
+        List<Book> savedBooks = bookService.addAllBooksAtOnce(books);
+        return ResponseEntity.ok(savedBooks);
     }
 
     @GetMapping("/getAllBooks")
